@@ -49,8 +49,11 @@ public class GunController : MonoBehaviour {
 					clone.transform.parent = hit.transform;
 
 					if (hit.collider.tag == "target"){
-						//Destroy(hit.transform.gameObject);
 						gameController.AddScore(1);
+						if (hit.transform.childCount>=3){
+							gameController.AddScore (3);
+							Destroy(hit.transform.gameObject);
+						}
 					}
 
 					if (hit.collider.tag == "boss"){

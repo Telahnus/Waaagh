@@ -10,23 +10,7 @@ Platform assembly: C:\Users\Jordan Quan\Desktop\Unity\Waaagh\WAAAGH_Data\Managed
 Loading C:\Users\Jordan Quan\Desktop\Unity\Waaagh\WAAAGH_Data\Managed\UnityEngine.dll into Unity Child Domain
 Platform assembly: C:\Users\Jordan Quan\Desktop\Unity\Waaagh\WAAAGH_Data\Managed\Assembly-CSharp.dll (this message is harmless)
 Loading C:\Users\Jordan Quan\Desktop\Unity\Waaagh\WAAAGH_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-- Completed reload, in  0.058 seconds
+- Completed reload, in  0.240 seconds
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.
-Target(Clone)
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Target(Clone)
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Target(Clone)
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-
-Target(Clone)
- 
-(Filename: C:/BuildAgent/work/d63dfc6385190b60/artifacts/StandalonePlayerGenerated/UnityEngineDebug.cpp Line: 49)
-

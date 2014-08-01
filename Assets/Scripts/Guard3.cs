@@ -10,31 +10,31 @@ public class Guard3 : MonoBehaviour {
 	private float rX;
 	private float rY;
 	private float rZ;
+	private int wounds;
 	
 	void Start(){
-
+		
 		//applying proper scale
 		Vector3 scale = new Vector3(); //creating temporary vector3 scale
 		scale.y = 1.32f; //proper height
 		scale.z = 1f; 
 		placed = false;
-
+		
 		// determine track
 		while (!placed) {
 			rZ = Random.Range (1, 21); // randomize depth
 			if (rZ == 5 || rZ == 15) {
 				rZ++;
 			}
-
-			//left = 1,7,13
-			//right = 4,10,16
-
+			
+			//guard3 l: 01,19,08 r: 11,14,04
+			
 			//depth determines direction of movement
-			if (rZ == 1 || rZ == 7 || rZ == 13) {
+			if (rZ == 1 || rZ == 19 || rZ == 08) {
 				rX = -7;
 				scale.x = -1.3f; //flip texture depending on direction
 				placed = true;
-			} else if (rZ == 4 || rZ == 10 || rZ == 16) {
+			} else if (rZ == 11 || rZ == 14 || rZ == 04) {
 				rX = 7;
 				scale.x = 1.3f;
 				placed = true;

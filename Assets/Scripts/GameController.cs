@@ -4,7 +4,9 @@ using System.Collections;
 public class GameController : MonoBehaviour {
 
 	//ATTRIBUTES
-	public GameObject target;
+	public GameObject mob1;
+	public GameObject mob3;
+	public GameObject mob2;
 	public GameObject boss;
 	public Vector3 spawnPosition;
 	public float spawnWait;
@@ -34,7 +36,7 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Update (){
-		if (score > 25) Win ();
+		if (score >= 50) Win ();
 		if (win || gameOver) {
 			StopCoroutine ("SpawnWaves");
 			if (Input.GetKeyDown (KeyCode.R)){
@@ -55,18 +57,14 @@ public class GameController : MonoBehaviour {
 		while(true){
 			for (int j = 0; j<3; j++){
 				for (int i = 0; i<10; i++){
-					/*
-					float rZ = Random.Range (1,3);
-					if (rZ == 1){rZ = Random.Range (1,5);
-					}else if (rZ == 2){rZ = Random.Range (6,15);
-					}else if (rZ == 3){rZ = Random.Range (16,21);
-					}
-					float rX = Random.Range (0,2);
-					if (rX == 0){rX = -7;
-					}else if (rX == 1){rX = 7;
-					}
 
-					Vector3 spawnLocation = new Vector3 (rX,0,rZ);*/
+					//Randomize which mob to spawn
+					GameObject target = new GameObject();
+					int mobType = Random.Range (1,4);
+					if (mobType == 1){target = mob1;}
+					else if (mobType == 2) {target = mob2;}
+					else if (mobType == 3) {target = mob3;}
+
 					Instantiate (target, new Vector3(0,-10,0), Quaternion.identity);
 					yield return new WaitForSeconds (spawnWait-.1f*i);
 				}
@@ -106,7 +104,5 @@ public class GameController : MonoBehaviour {
 		UpdateAmmo ();}
 	void UpdateAmmo(){ammoText.text = "Ammo: " + ammo;}
 	public int GetAmmo(){return ammo;}
-
-
-
+	
 }
