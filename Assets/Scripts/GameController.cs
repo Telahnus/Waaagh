@@ -55,7 +55,7 @@ public class GameController : MonoBehaviour {
 		while(true){
 			for (int j = 0; j<3; j++){
 				for (int i = 0; i<10; i++){
-
+					/*
 					float rZ = Random.Range (1,3);
 					if (rZ == 1){rZ = Random.Range (1,5);
 					}else if (rZ == 2){rZ = Random.Range (6,15);
@@ -66,12 +66,13 @@ public class GameController : MonoBehaviour {
 					}else if (rX == 1){rX = 7;
 					}
 
-					Vector3 spawnLocation = new Vector3 (rX,1,rZ);
-					Instantiate (target, spawnLocation, Quaternion.identity);
+					Vector3 spawnLocation = new Vector3 (rX,0,rZ);*/
+					Instantiate (target, new Vector3(0,-10,0), Quaternion.identity);
 					yield return new WaitForSeconds (spawnWait-.1f*i);
 				}
 				yield return new WaitForSeconds (waveWait);
 			}
+			yield return new WaitForSeconds (3);
 			SpawnBoss ();
 			yield break;
 		}

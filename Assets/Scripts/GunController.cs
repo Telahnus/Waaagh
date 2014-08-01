@@ -11,6 +11,7 @@ public class GunController : MonoBehaviour {
 	public AudioClip reload;
 	private GameController gameController;
 	private BossController bossController;
+	public GameObject hole;
 
 	void Start (){
 		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
@@ -32,6 +33,7 @@ public class GunController : MonoBehaviour {
 		if (Input.GetButton("Fire1") && Time.time > nextFire)
 		{
 			if (gameController.GetAmmo()>0){
+
 				nextFire = Time.time + fireRate;
 				audio.PlayOneShot(shot);
 				gameController.AddAmmo(-1);
@@ -39,11 +41,18 @@ public class GunController : MonoBehaviour {
 				Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 				RaycastHit hit;
 				if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
-					Debug.Log (hit.collider.name);
+
+					//BULLET MARKS
+					var hitRotation = Quaternion.FromToRotation(Vector3.back, hit.normal);
+					Vector3 point = hit.point + .1f*hit.normal;
+					GameObject clone = Instantiate (hole, point, hitRotation) as GameObject;
+					clone.transform.parent = hit.transform;
+
 					if (hit.collider.tag == "target"){
-						Destroy(hit.transform.gameObject);
+						//Destroy(hit.transform.gameObject);
 						gameController.AddScore(1);
 					}
+
 					if (hit.collider.tag == "boss"){
 						GameObject bossControllerObject = GameObject.FindWithTag ("boss");
 						if (bossControllerObject != null){
