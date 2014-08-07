@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour {
 	public int ammo;
 	private bool gameOver;
 	private bool win;
+	private GameObject target;
 	
 	void Start () 
 	{
@@ -32,7 +33,7 @@ public class GameController : MonoBehaviour {
 		score = 0;
 		UpdateScore ();
 		UpdateAmmo ();
-		StartCoroutine ("SpawnWaves");
+		//StartCoroutine ("SpawnWaves");
 	}
 
 	void Update (){
@@ -59,7 +60,7 @@ public class GameController : MonoBehaviour {
 				for (int i = 0; i<10; i++){
 
 					//Randomize which mob to spawn
-					GameObject target = new GameObject();
+					//GameObject target = new GameObject();
 					int mobType = Random.Range (1,4);
 					if (mobType == 1){target = mob1;}
 					else if (mobType == 2) {target = mob2;}

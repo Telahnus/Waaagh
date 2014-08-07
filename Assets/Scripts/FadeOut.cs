@@ -11,7 +11,7 @@ public class FadeOut : MonoBehaviour {
 
 	void Update () {
 		alpha -= Time.deltaTime * fadeSpeed;
-		renderer.material.color = new Color(255,255,255,alpha);
+		renderer.material.color = new Color(1,1,1,alpha);
 		if (renderer.material.color.a  <= 0) {
 			Destroy (gameObject);		
 		}

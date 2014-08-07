@@ -3,31 +3,24 @@ using System.Collections;
 
 public class Guard3 : MonoBehaviour {
 	
-	public float baseSpeed;
-	private float speed;
-	private bool moveRight;
 	private bool placed;
 	private float rX;
 	private float rY;
 	private float rZ;
-	private int wounds;
 	
 	void Start(){
 		
-		//applying proper scale
-		Vector3 scale = new Vector3(); //creating temporary vector3 scale
-		scale.y = 1.32f; //proper height
+		// apply proper scale
+		// !! will depend on original textures scale
+		Vector3 scale = new Vector3(); // requires creating temporary vector3 scale
+		scale.y = 1.32f; // proper height
 		scale.z = 1f; 
-		placed = false;
+		placed = false; //boolean to track if it has been properly placed
 		
-		// determine track
+		// determine track, guard3 l: 01,19,08 r: 11,14,04
 		while (!placed) {
 			rZ = Random.Range (1, 21); // randomize depth
-			if (rZ == 5 || rZ == 15) {
-				rZ++;
-			}
-			
-			//guard3 l: 01,19,08 r: 11,14,04
+			if (rZ == 5 || rZ == 15) rZ++;
 			
 			//depth determines direction of movement
 			if (rZ == 1 || rZ == 19 || rZ == 08) {
@@ -41,32 +34,18 @@ public class Guard3 : MonoBehaviour {
 			}
 		}
 		
-		rY = transform.localScale.y/ 2; //bump transform up by half height to keep level with floor
+		rY = transform.localScale.y / 2; //bump transform up by half height to keep level with floor
 		
 		Vector3 spawnLocation = new Vector3 (rX,rY,rZ);
 		
 		transform.position = spawnLocation;
 		transform.localScale = scale;
 		
-		//Set direction
-		if (transform.position.x < 0) {
-			moveRight = true;		
-		} else {moveRight = false;}
-		
-		//speed = speed*Random.Range(.7f,1.1f);
 	}
-	
+
 	void Update(){
-		speed = baseSpeed + Random.Range(-2f,0.5f); //rickety movement
-		if (moveRight){
-			transform.Translate(Vector3.right * Time.deltaTime * speed);
-		} else {
-			transform.Translate(Vector3.left * Time.deltaTime * speed);
-		}
 		
-		if (Mathf.Abs (transform.position.x) > 10) {
-			Destroy(gameObject);
-		}
+		if (Mathf.Abs (transform.position.x) > 10) Destroy(gameObject);
 		
 	}
 	

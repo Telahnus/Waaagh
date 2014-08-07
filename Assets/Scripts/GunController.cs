@@ -12,6 +12,9 @@ public class GunController : MonoBehaviour {
 	private GameController gameController;
 	private BossController bossController;
 	public GameObject hole;
+	private bool burst = false;
+	private float bonusTime;
+	private float fireTemp;
 
 	void Start (){
 		GameObject gameControllerObject = GameObject.FindWithTag ("GameController");
@@ -43,10 +46,19 @@ public class GunController : MonoBehaviour {
 				if (Physics.Raycast (ray, out hit, Mathf.Infinity)) {
 
 					//BULLET MARKS
+
+					/*need to fix this!! not sure how to rotate quad, then face
+					 * works for fences, but not walls/floor
+					var hitRotation = Quaternion.Euler(0,0,Random.Range (0f,360f));
+					hitRotation *= Quaternion.FromToRotation(Vector3.back, hit.normal);*/
+
 					var hitRotation = Quaternion.FromToRotation(Vector3.back, hit.normal);
 					Vector3 point = hit.point + .1f*hit.normal;
 					GameObject clone = Instantiate (hole, point, hitRotation) as GameObject;
 					clone.transform.parent = hit.transform;
+
+					//use parent transform, which has no scale, so no skew
+					//clone.transform.parent = hit.transform.parent;
 
 					if (hit.collider.tag == "target"){
 						gameController.AddScore(1);
@@ -54,6 +66,14 @@ public class GunController : MonoBehaviour {
 							gameController.AddScore (3);
 							Destroy(hit.transform.gameObject);
 						}
+					}
+
+					if (hit.collider.tag == "bonus"){
+						burst = true;
+						bonusTime = Time.time + 5;
+						fireTemp = fireRate;
+						fireRate = 0.5f;
+						Destroy(hit.transform.gameObject);
 					}
 
 					if (hit.collider.tag == "boss"){
@@ -72,6 +92,11 @@ public class GunController : MonoBehaviour {
 				nextFire = Time.time + .2f;
 			}
 
+		}
+
+		if (burst && Time.time > bonusTime) {
+			fireRate = fireTemp;
+			burst = false;
 		}
 
 		if (Input.GetButton ("Fire2") && Time.time > nextFire) {

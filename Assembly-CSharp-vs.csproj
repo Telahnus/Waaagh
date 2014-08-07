@@ -46,6 +46,8 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\MeleeControls.cs" />
+     <Compile Include="Assets\Prefabs\SpawnMelee.cs" />
      <Compile Include="Assets\Scripts\BossController.cs" />
      <Compile Include="Assets\Scripts\FadeOut.cs" />
      <Compile Include="Assets\Scripts\GameController.cs" />
@@ -53,6 +55,9 @@
      <Compile Include="Assets\Scripts\Guard7.cs" />
      <Compile Include="Assets\Scripts\Guard8.cs" />
      <Compile Include="Assets\Scripts\GunController.cs" />
+     <Compile Include="Assets\Scripts\moveJitter.cs" />
+     <Compile Include="Assets\Scripts\moveSmooth.cs" />
+     <Compile Include="Assets\Scripts\movement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
